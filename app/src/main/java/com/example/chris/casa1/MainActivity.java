@@ -4,12 +4,16 @@ import android.net.Uri;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvSausageSandwich,             tvQtySausageSandwich;
     TextView tvTwoPeppers,                  tvQtyTwoPeppers;
     TextView tvPizza,                       tvQtyPizza;
+    TextView tvTotal, tvTendered, tvChangeDue;
 
 
     @Override
@@ -54,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
         tvPizza = (TextView) findViewById(R.id.txtPizza);
         tvQtyPizza = (TextView) findViewById(R.id.txtQtyPizza);
 
+        tvTotal = (TextView) findViewById(R.id.txtTotal);
+        tvTendered = (TextView) findViewById(R.id.txtTendered);
+        tvChangeDue = (TextView) findViewById(R.id.txtChangeDue);
+
         tvQtyRiceBall.setFocusable(false);
         tvQtyBananaPepperSand.setFocusable(false);
         tvQtyWrap.setFocusable(false);
@@ -63,6 +72,27 @@ public class MainActivity extends AppCompatActivity {
         tvQtySausageSandwich.setFocusable(false);
         tvQtyTwoPeppers.setFocusable(false);
         tvQtyPizza.setFocusable(false);
+
+        tvTotal.setFocusable(false);
+        tvChangeDue.setFocusable(false);
+
+        tvTendered.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                calculateChangeDue();
+            }
+        });
+
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -78,29 +108,48 @@ public class MainActivity extends AppCompatActivity {
 
     public void clearAll(View view) {
 
-        TextView tv_total = (TextView) findViewById(R.id.txtTotal);
-        Integer newTotal = 0;
-        tv_total.setText(newTotal.toString());
+        String newTotal = "0";
 
-        tvQtyRiceBall.setText(newTotal.toString());
-        tvQtyBananaPepperSand.setText(newTotal.toString());
-        tvQtyWrap.setText(newTotal.toString());
-        tvQtyEggplantParm.setText(newTotal.toString());
-        tvQtyRigatoni.setText(newTotal.toString());
-        tvQtySausageBananaPepperSandwich.setText(newTotal.toString());
-        tvQtySausageSandwich.setText(newTotal.toString());
-        tvQtyTwoPeppers.setText(newTotal.toString());
-        tvQtyPizza.setText(newTotal.toString());
+        tvQtyRiceBall.setText(newTotal);
+        tvQtyBananaPepperSand.setText(newTotal);
+        tvQtyWrap.setText(newTotal);
+        tvQtyEggplantParm.setText(newTotal);
+        tvQtyRigatoni.setText(newTotal);
+        tvQtySausageBananaPepperSandwich.setText(newTotal);
+        tvQtySausageSandwich.setText(newTotal);
+        tvQtyTwoPeppers.setText(newTotal);
+        tvQtyPizza.setText(newTotal);
+        tvTotal.setText(newTotal);
+        tvTendered.setText("");
+        tvChangeDue.setText(newTotal);
+
+        tvRiceBall.requestFocus();
+
+    }
+
+    public void calculateChangeDue() {
+
+
+        try {
+            Integer total = Integer.parseInt(tvTotal.getText().toString());
+            Integer tendered = Integer.parseInt(tvTendered.getText().toString());
+
+            Integer changeDue = tendered - total;
+            tvChangeDue.setText(changeDue.toString());
+
+        }
+        catch(Exception e){
+            Integer changeDue = 0;
+            tvChangeDue.setText(changeDue.toString());
+        }
 
     }
 
     public void addToBalance(Integer price) {
-        TextView tv_total = (TextView) findViewById(R.id.txtTotal);
-        Integer total = Integer.parseInt(tv_total.getText().toString());
-
+        Integer total = Integer.parseInt(tvTotal.getText().toString());
         Integer newTotal = total + price;
 
-        tv_total.setText(newTotal.toString());
+        tvTotal.setText(newTotal.toString());
 
     }
 

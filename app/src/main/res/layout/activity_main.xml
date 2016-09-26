@@ -51,13 +51,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtTotal"
-        android:width="200dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:width="100dp"
         android:text="0"
         android:textStyle="bold"
         android:textSize="30dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -252,18 +252,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear"
-        android:id="@+id/button8"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:background="@android:color/holo_blue_dark"
-        android:width="150dp"
-        android:textColor="@android:color/white"
-        android:onClick="clearAll" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Sausage Sandwich"
         android:id="@+id/button"
         android:width="200dp"
@@ -323,7 +311,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_alignTop="@+id/bRiceBall"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -452,5 +440,72 @@
         android:textStyle="bold"
         android:layout_alignTop="@+id/txtSausageSandwich"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Total:"
+        android:id="@+id/textView3"
+        android:textSize="20dp"
+        android:layout_above="@+id/txtTotal"
+        android:layout_alignStart="@+id/textView2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTendered"
+        android:width="100dp"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/txtTotal"
+        android:layout_centerHorizontal="true"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Tendered:"
+        android:id="@+id/textView4"
+        android:textSize="20dp"
+        android:layout_above="@+id/txtTendered"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtChangeDue"
+        android:width="100dp"
+        android:text="0"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Change Due:"
+        android:id="@+id/textView5"
+        android:textSize="20dp"
+        android:layout_above="@+id/txtChangeDue"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:id="@+id/button2"
+        android:height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/txtRiceBall"
+        android:layout_alignStart="@+id/txtChangeDue"
+        android:background="@android:color/holo_red_light"
+        android:onClick="clearAll" />
 
 </RelativeLayout>
